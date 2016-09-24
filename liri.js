@@ -1,11 +1,16 @@
+//Set default messages
+var movieDefaultMsg = "\nYou forgot to enter a movie. Let me suggest 'Mr. Nobody.' \nCheck it out at IMDB: http://www.imdb.com/title/tt0485947/ It's on Netflix too!";
+var songDefaultMsg = 'Since no song title was supplied, let me tell you about "The Sign" by Ace of Base.';
+
 // Store all of the arguments in an array 
 var nodeArgs = process.argv;
 var apiChoice = process.argv[2];
 var fs = require('fs');
+
 //console.log(nodeArgs);
 	fs.appendFile('log.txt',(nodeArgs).join(' '));
-// Determines the input to switch on
 
+// Determines the input to switch on
 switch (apiChoice) {
 	case "my-tweets":
 		twitter();
@@ -15,7 +20,6 @@ switch (apiChoice) {
 		if (!nodeArgs[3]) {
 			//set default to "The Sign" if no song entered
 			var song = 'The Sign';
-			var songDefaultMsg = '\nYou forgot to enter a song title. Let me tell you about "The Sign" by Ace of Base.';
 			console.log(songDefaultMsg);
 			fs.appendFile('log.txt',songDefaultMsg);
 		} else {
@@ -29,7 +33,7 @@ switch (apiChoice) {
 			// // Create an empty variable for holding the movie name
 			var movieName = "";
 			// Loop through all the words in the node argument
-			// And do a little for-loop magic to handle the inclusion of "+"s for the url query
+			// And add "+"s between words of the title for the url query
 			for (var i=3; i < nodeArgs.length; i++){
 				if (i>3 && i < nodeArgs.length){
 					movieName = movieName + "+" + nodeArgs[i];
@@ -41,8 +45,7 @@ switch (apiChoice) {
 			}		
 		} else {
 			//set default to "Mr. Nobody" if no movie entered
-			movieName = 'Mr. Nobody';
-			var movieDefaultMsg = "You forgot to enter a movie. Let me suggest 'Mr. Nobody.' Check it out at IMDB: http://www.imdb.com/title/tt0485947/ \nIt's on Netflix too!";
+			movieName = 'Mr. Nobody';			
 			console.log(movieDefaultMsg);
 			fs.appendFile('log.txt',movieDefaultMsg);
 		}
@@ -99,7 +102,7 @@ function spotify(song) {
 		//console.log(JSON.stringify(data,null,2));
 	    if ( err ) {
 	        console.log('Error occurred: ' + err);
-	        fs.appendFile('log.txt','\nError occurred: ' + err);
+	        fs.appendFile('log.txt','Error occurred: ' + err);
 	        return;
 	    }
 	    // items is a giant array with all the data we need
@@ -108,16 +111,16 @@ function spotify(song) {
 	    fs.appendFile('log.txt','\nHere are the top results for ' + song);
 	    //Do something with 'data'     
 	    for ( var i = 0; i < 10; i++) {
-	    	//console.log('\nResult #:', i+1);
+	    	console.log('\nResult #:', i+1);
 		    console.log('\nArtist name: '+ dataArr[i].artists[0].name);
 		    console.log('Song title: '+ dataArr[i].name);
 		    console.log('Preview link: '+ dataArr[i].preview_url);
 		    console.log('Album: '+ dataArr[i].album.name);
 
-		    fs.appendFile('\nArtist name: '+ dataArr[i].artists[0].name);
-		    fs.appendFile('Song title: '+ dataArr[i].name);
-		    fs.appendFile('Preview link: '+ dataArr[i].preview_url);
-		    fs.appendFile('Album: '+ dataArr[i].album.name)
+		    fs.appendFile('log.txt','\nArtist name: '+ dataArr[i].artists[0].name);
+		    fs.appendFile('log.txt','\nSong title: '+ dataArr[i].name);
+		    fs.appendFile('log.txt','\nPreview link: '+ dataArr[i].preview_url);
+		    fs.appendFile('log.txt','\nAlbum: '+ dataArr[i].album.name)
 		}
         
 	}); //end of spotify.search	
@@ -151,14 +154,14 @@ function omdb(movieName) {
 
 
 			fs.appendFile('log.txt', "\nMovie title: " + parser["Title"]);
-			fs.appendFile('log.txt', "Release Year: " + parser["Year"]);
-			fs.appendFile('log.txt', "IMDB rating: " + parser["imdbRating"]);
-			fs.appendFile('log.txt', "Country: " + parser["Country"]);
-			fs.appendFile('log.txt', "Language: " + parser["Language"]);
-			fs.appendFile('log.txt', "Plot: " + parser["Plot"]);
-			fs.appendFile('log.txt', "Actors: " + parser["Actors"]);
-			fs.appendFile('log.txt', "Rotten Tomatoes Rating: " + parser["tomatoRating"]);
-			fs.appendFile('log.txt', "Rotten Tomatoes URL: " + parser["tomatoURL"]);
+			fs.appendFile('log.txt', "\nRelease Year: " + parser["Year"]);
+			fs.appendFile('log.txt', "\nIMDB rating: " + parser["imdbRating"]);
+			fs.appendFile('log.txt', "\nCountry: " + parser["Country"]);
+			fs.appendFile('log.txt', "\nLanguage: " + parser["Language"]);
+			fs.appendFile('log.txt', "\nPlot: " + parser["Plot"]);
+			fs.appendFile('log.txt', "\nActors: " + parser["Actors"]);
+			fs.appendFile('log.txt', "\nRotten Tomatoes Rating: " + parser["tomatoRating"]);
+			fs.appendFile('log.txt', "\nRotten Tomatoes URL: " + parser["tomatoURL"]);
 
 
 		}
@@ -181,7 +184,6 @@ function fileCommand() {
 				var song = fileTxtArr[1];				
 				} else {
 				var song = 'The Sign';
-				var songDefaultMsg = '\nSince no song title was supplied, let me tell you about "The Sign" by Ace of Base.';
 				console.log(songDefaultMsg);
 				fs.appendFile('log.txt',songDefaultMsg);
 				}
@@ -193,7 +195,6 @@ function fileCommand() {
 					var movie = fileTxtArr[1];
 				} else {
 					var movie = 'Mr.Nobody';
-					var movieDefaultMsg = "Since no movie title was supplied let me suggest 'Mr. Nobody.' Check it out at IMDB: http://www.imdb.com/title/tt0485947/ \nIt's on Netflix too!";
 					console.log(movieDefaultMsg);
 					fs.appendFile('log.txt',movieDefaultMsg);
 				}

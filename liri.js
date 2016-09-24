@@ -1,11 +1,11 @@
+var fs = require('fs');
 //Set default messages
 var movieDefaultMsg = "\nYou forgot to enter a movie. Let me suggest 'Mr. Nobody.' \nCheck it out at IMDB: http://www.imdb.com/title/tt0485947/ It's on Netflix too!";
-var songDefaultMsg = 'Since no song title was supplied, let me tell you about "The Sign" by Ace of Base.';
+var songDefaultMsg = '\nSince no song title was supplied, let me tell you about "The Sign" by Ace of Base.';
 
 // Store all of the arguments in an array 
 var nodeArgs = process.argv;
 var apiChoice = process.argv[2];
-var fs = require('fs');
 
 //console.log(nodeArgs);
 	fs.appendFile('log.txt',(nodeArgs).join(' '));

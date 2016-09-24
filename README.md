@@ -1,6 +1,11 @@
 # Liri-Node-App
 
-This node.js app receives input from the command line and fetches data from the specified API. Node packages are used for Twitter, Spotify, and OMDB. 
+This node.js app receives input from the command line and fetches data from the specified API. 
+
+Node packages used:
+- Node.js Twitter API Wrapper
+- Node.js Spotify API Wrapper
+- Node.js Request to get data from OMDB 
 
 All command line inputs and data logged to the console are stored in a text file using fs.appendFile.
 

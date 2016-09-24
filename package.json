@@ -1,0 +1,26 @@
+{
+  "name": "liri.js",
+  "version": "1.0.0",
+  "description": "This node.js app receives input from the command line and fetches data from the specified API.",
+  "main": "keys.js",
+  "dependencies": {
+    "omdb": "^0.7.0",
+    "request": "^2.75.0",
+    "spotify": "^0.3.0",
+    "twitter": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clsavino/liri-node-app.git"
+  },
+  "author": "Christi Savino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clsavino/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/clsavino/liri-node-app#readme"
+}

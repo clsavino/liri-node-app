@@ -1,17 +1,19 @@
 {
-  "name": "liri.js",
+  "name": "liri-node-app",
   "version": "1.0.0",
   "description": "This node.js app receives input from the command line and fetches data from the specified API.",
-  "main": "keys.js",
+  "main": "liri.js",
   "dependencies": {
-    "omdb": "^0.7.0",
-    "request": "^2.75.0",
     "spotify": "^0.3.0",
+    "omdb": "^0.7.0",
+    "inquire": "^0.4.8",
+    "request": "^2.75.0",
     "twitter": "^1.4.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node liri.js movie-this"
   },
   "repository": {
     "type": "git",

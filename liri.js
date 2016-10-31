@@ -28,7 +28,6 @@ switch (apiChoice) {
 		} else {
 			var song = nodeArgs.slice(3).join(' ');
 		}
-		console.log('song',song);
 		spotifyIt(song);
 		break;
 
@@ -40,8 +39,7 @@ switch (apiChoice) {
 			// And add "+"s between words of the title for the url query
 			for (var i=3; i < nodeArgs.length; i++){
 				if (i>3 && i < nodeArgs.length){
-					movieName = movieName + "+" + nodeArgs[i];
-					console.log('movieName',movieName);
+					movieName += "+" + nodeArgs[i];
 				}
 				else {
 					//this is a single word title
@@ -51,7 +49,6 @@ switch (apiChoice) {
 		} else {
 			//set default to "Mr. Nobody" if no movie entered
 			movieName = 'Mr.+Nobody';
-			console.log('else movieName',movieName);
 			console.log(movieDefaultMsg);
 			fs.appendFile('log.txt',movieDefaultMsg);
 		}
